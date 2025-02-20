@@ -20,6 +20,7 @@ router = APIRouter(tags=["House Image Generation"])
 
 # Pydantic model for request body
 class HouseSpecifications(BaseModel):
+    house_type: str
     total_area: float  # Total area of the house in square meters
     num_floors: int    # Number of floors
     num_rooms: int     # Number of rooms
@@ -32,7 +33,7 @@ def generate_house_prompt(specs: HouseSpecifications) -> str:
     """
     preferences = ", ".join(specs.additional_preferences) if specs.additional_preferences else "no additional features"
     prompt = (
-        f"A modern house with a total area of {specs.total_area} square meters, "
+        f"A {specs.house_type} with a total area of {specs.total_area} square meters, "
         f"{specs.num_floors} floors, {specs.num_rooms} rooms, {specs.num_bathrooms} bathrooms, "
         f"and {preferences}. The house should have a realistic architectural design."
     )
