@@ -1,13 +1,10 @@
 from datetime import datetime, timedelta, timezone
 from typing import Any
-
 import jwt
-from passlib.context import CryptContext
-
+import bcrypt  # Use bcrypt directly for password hashing and verification
 from app.core.config import settings
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
+# No need for CryptContext since we're using bcrypt directly
 
 ALGORITHM = "HS256"
 
@@ -20,8 +17,11 @@ def create_access_token(subject: str | Any, expires_delta: timedelta) -> str:
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(plain_password, hashed_password)
+    # Use bcrypt to verify the password
+    return bcrypt.checkpw(plain_password.encode("utf-8"), hashed_password.encode("utf-8"))
 
 
 def get_password_hash(password: str) -> str:
-    return pwd_context.hash(password)
+    # Use bcrypt to hash the password
+    hashed_password = bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt())
+    return hashed_password.decode("utf-8")  # Return as string for storage
