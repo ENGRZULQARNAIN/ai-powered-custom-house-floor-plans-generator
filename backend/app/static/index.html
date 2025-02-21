@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Image Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f7f9;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        .form-container {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .preferences-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        .preference-option {
+            display: flex;
+            align-items: center;
+            background-color: #f0f4f8;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        .preference-option input {
+            width: auto;
+            margin-right: 5px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .result-container {
+            display: none;
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .result-image {
+            max-width: 100%;
+            margin-top: 20px;
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .loading-spinner {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <h1>House Image Generator</h1>
+    
+    <div class="form-container">
+        <form id="houseForm">
+            <div class="form-group">
+                <label for="houseType">House Type:</label>
+                <select id="houseType" required>
+                    <option value="">Select house type</option>
+                    <option value="modern house">Modern House</option>
+                    <option value="victorian house">Victorian House</option>
+                    <option value="cottage">Cottage</option>
+                    <option value="beach house">Beach House</option>
+                    <option value="mountain cabin">Mountain Cabin</option>
+                    <option value="mediterranean villa">Mediterranean Villa</option>
+                    <option value="minimalist house">Minimalist House</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="totalArea">Total Area (square meters):</label>
+                <input type="number" id="totalArea" min="1" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="numFloors">Number of Floors:</label>
+                <input type="number" id="numFloors" min="1" max="10" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="numRooms">Number of Rooms:</label>
+                <input type="number" id="numRooms" min="1" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="numBathrooms">Number of Bathrooms:</label>
+                <input type="number" id="numBathrooms" min="0" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Additional Preferences:</label>
+                <div class="preferences-container">
+                    <div class="preference-option">
+                        <input type="checkbox" id="garden" value="garden">
+                        <label for="garden">Garden</label>
+                    </div>
+                    <div class="preference-option">
+                        <input type="checkbox" id="pool" value="swimming pool">
+                        <label for="pool">Swimming Pool</label>
+                    </div>
+                    <div class="preference-option">
+                        <input type="checkbox" id="balcony" value="balcony">
+                        <label for="balcony">Balcony</label>
+                    </div>
+                    <div class="preference-option">
+                        <input type="checkbox" id="garage" value="garage">
+                        <label for="garage">Garage</label>
+                    </div>
+                    <div class="preference-option">
+                        <input type="checkbox" id="terrace" value="terrace">
+                        <label for="terrace">Terrace</label>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit">Generate House Image</button>
+        </form>
+    </div>
+    
+    <div class="loading">
+        <div class="loading-spinner"></div>
+        <p>Generating your dream house... This may take up to 30 seconds.</p>
+    </div>
+    
+    <div class="error-message" id="errorMessage"></div>
+    
+    <div class="result-container" id="resultContainer">
+        <h2>Your Generated House</h2>
+        <p id="houseDescription"></p>
+        <img id="generatedImage" class="result-image" alt="Generated House Image">
+    </div>
+    
+    <script>
+        document.getElementById('houseForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Hide previous results and show loading
+            document.getElementById('resultContainer').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.querySelector('.loading').style.display = 'block';
+            
+            // Get selected preferences
+            const preferenceCheckboxes = document.querySelectorAll('.preference-option input[type="checkbox"]:checked');
+            const preferences = Array.from(preferenceCheckboxes).map(checkbox => checkbox.value);
+            
+            // Create request payload
+            const payload = {
+                house_type: document.getElementById('houseType').value,
+                total_area: parseFloat(document.getElementById('totalArea').value),
+                num_floors: parseInt(document.getElementById('numFloors').value),
+                num_rooms: parseInt(document.getElementById('numRooms').value),
+                num_bathrooms: parseInt(document.getElementById('numBathrooms').value),
+                additional_preferences: preferences
+            };
+            
+            try {
+                // Send request to API
+                const response = await fetch('/api/v1/generate-house-image', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to generate image');
+                }
+                
+                const data = await response.json();
+                
+                // Update UI with results
+                document.getElementById('houseDescription').textContent = 
+                    `${payload.house_type} with ${payload.total_area} sq.m., ${payload.num_floors} floor(s), ` +
+                    `${payload.num_rooms} room(s), ${payload.num_bathrooms} bathroom(s)` +
+                    (preferences.length > 0 ? ` and ${preferences.join(', ')}` : '');
+                
+                // Display the base64 image directly
+                document.getElementById('generatedImage').src = `data:image/png;base64,${data.image_base64}`;
+                document.getElementById('resultContainer').style.display = 'block';
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('errorMessage').textContent = 'Failed to generate house image. Please try again.';
+                document.getElementById('errorMessage').style.display = 'block';
+            } finally {
+                document.querySelector('.loading').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
