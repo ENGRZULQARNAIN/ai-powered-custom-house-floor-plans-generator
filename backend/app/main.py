@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.routing import APIRoute
 from starlette.middleware.cors import CORSMiddleware
-
+from fastapi.responses import JSONResponse
 from app.api.main import api_router
 from app.core.config import settings
 
@@ -10,10 +10,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def custom_generate_unique_id(route: APIRoute) -> str:
-    return f"{route.tags[0]}-{route.name}"
+    tag = route.tags[0] if route.tags else "default"
+    return f"{tag}-{route.name}"
 
 app = FastAPI(
-    title=settings.PROJECT_NAME,
+    title="AI HOME DESIGN GENERATOR",
     openapi_url=f"{settings.API_V1_STR}/openapi.json",
     generate_unique_id_function=custom_generate_unique_id,
 )
@@ -27,5 +28,10 @@ if settings.all_cors_origins:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+
+@app.get("/", tags=["home"])
+async def home_route():
+    return JSONResponse(content={"message": "AI HOME DESIGN GENERATOR: v0.0.1"})
+
 
 app.include_router(api_router, prefix=settings.API_V1_STR)
