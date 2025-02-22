@@ -24,6 +24,33 @@ def parse_cors(v: Any) -> list[str] | str:
     raise ValueError(v)
 
 
+
+from enum import Enum
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
+class AvailableServices(str, Enum):
+    """Enumeration of available models"""
+    HF_TOKEN = os.getenv("HF_TOKEN")
+    STABLE_DIFFUSION = "stabilityai/stable-diffusion-3.5-large"
+    REPLICATE_TOKEN = os.getenv("REPLICATE_TOKEN")
+    NOVITA_TOKEN = os.getenv("NOVITA_TOKEN")
+    NOVITA_MODEL = "novita/novita-e12.ckpt"
+    FIREWORKS = os.getenv("FIREWORKS")
+    TOGETHER = os.getenv("TOGETHER")
+    FAL_TOKEN = os.getenv("FAL")
+    HYPERBOLIC = os.getenv("HYPERBOLIC")
+
+
+
+
+
+
+
+
+
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         # Use top level .env file (one level above ./backend/)

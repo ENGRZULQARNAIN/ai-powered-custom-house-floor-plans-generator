@@ -134,7 +134,7 @@
             </div>
             
             <div class="form-group">
-                <label for="totalArea">Total Area (square meters):</label>
+                <label for="totalArea">Total Area (Marlas):</label>
                 <input type="number" id="totalArea" min="1" required>
             </div>
             
@@ -146,11 +146,6 @@
             <div class="form-group">
                 <label for="numRooms">Number of Rooms:</label>
                 <input type="number" id="numRooms" min="1" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="numBathrooms">Number of Bathrooms:</label>
-                <input type="number" id="numBathrooms" min="0" required>
             </div>
             
             <div class="form-group">
@@ -215,7 +210,6 @@
                 total_area: parseFloat(document.getElementById('totalArea').value),
                 num_floors: parseInt(document.getElementById('numFloors').value),
                 num_rooms: parseInt(document.getElementById('numRooms').value),
-                num_bathrooms: parseInt(document.getElementById('numBathrooms').value),
                 additional_preferences: preferences
             };
             
@@ -237,8 +231,8 @@
                 
                 // Update UI with results
                 document.getElementById('houseDescription').textContent = 
-                    `${payload.house_type} with ${payload.total_area} sq.m., ${payload.num_floors} floor(s), ` +
-                    `${payload.num_rooms} room(s), ${payload.num_bathrooms} bathroom(s)` +
+                    `${payload.house_type} with ${payload.total_area} Marlas, ${payload.num_floors} floor(s), ` +
+                    `${payload.num_rooms} room(s),` +
                     (preferences.length > 0 ? ` and ${preferences.join(', ')}` : '');
                 
                 // Display the base64 image directly
