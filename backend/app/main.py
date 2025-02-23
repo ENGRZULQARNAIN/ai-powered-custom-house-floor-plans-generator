@@ -3,7 +3,7 @@ from fastapi.routing import APIRoute
 from starlette.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse,HTMLResponse
 from app.api.main import api_router
-from app.core.config import settings
+# from app.core.config 
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi import Request
@@ -18,19 +18,17 @@ def custom_generate_unique_id(route: APIRoute) -> str:
 
 app = FastAPI(
     title="AI HOME DESIGN GENERATOR",
-    openapi_url=f"{settings.API_V1_STR}/openapi.json",
+    openapi_url="/api/v1/openapi.json",
     generate_unique_id_function=custom_generate_unique_id,
 )
 
-# Set all CORS enabled origins
-if settings.all_cors_origins:
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=settings.all_cors_origins,
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Get the base directory of the project
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -43,4 +41,4 @@ async def read_index():
         content = f.read()
     return HTMLResponse(content=content)
 
-app.include_router(api_router, prefix=settings.API_V1_STR)
+app.include_router(api_router, prefix="/api/v1")

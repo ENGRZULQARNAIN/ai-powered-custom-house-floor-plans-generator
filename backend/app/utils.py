@@ -1,4 +1,4 @@
-from app.core.config import settings,AvailableServices
+from app.core.config import AvailableServices
 from huggingface_hub import InferenceClient
 import base64
 from io import BytesIO
