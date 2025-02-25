@@ -4,13 +4,12 @@ from io import BytesIO
 from fastapi import APIRouter, HTTPException, Response, Request
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
-from huggingface_hub import InferenceClient
 from typing import List
 from app.utils import ServicesRunner
 import time
 
 # FastAPI router
-router = APIRouter()
+router = APIRouter(tags=["IMAGE Generation"])
 
 # Pydantic model for request body
 class HouseSpecifications(BaseModel):
