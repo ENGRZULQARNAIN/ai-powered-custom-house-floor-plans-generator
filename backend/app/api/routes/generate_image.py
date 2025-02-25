@@ -7,7 +7,7 @@ from pydantic import BaseModel
 from huggingface_hub import InferenceClient
 from typing import List
 from app.utils import ServicesRunner
-
+import time
 
 # FastAPI router
 router = APIRouter()
@@ -40,10 +40,14 @@ async def generate_house_image(specs: HouseSpecifications):
     if specs.total_area <= 0 or specs.num_floors <= 0 or specs.num_rooms <= 0:
         raise HTTPException(status_code=400, detail="Invalid input values. All fields must be positive numbers.")
     try:
-        # Generate prompt
+        # # Generate prompt
         prompt = generate_house_prompt(specs)
         service_obj = ServicesRunner()
         response = service_obj.hugging_face_runner(prompt, "hf")
+        # with open("D:/full-stack-fastapi-template/backend/app/api/routes/test.png", "rb") as image_file:
+        #     response = base64.b64encode(image_file.read()).decode('utf-8')
+        # return {"message": "image generated successfully", "image_base64": response}
+        # return {"message": prompt}
         return response
     except Exception as e:
         print(f"Error generating image: {e}")
