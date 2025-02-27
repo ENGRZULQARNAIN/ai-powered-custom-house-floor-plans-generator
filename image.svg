@@ -1,0 +1,202 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+  <!-- Title and measurements -->
+  <text x="400" y="30" text-anchor="middle" font-family="Arial" font-size="20" font-weight="bold">5 MARLA HOUSE PLAN (30' x 45')</text>
+  <text x="400" y="55" text-anchor="middle" font-family="Arial" font-size="14">TWO FLOORS WITH 6 ROOMS, GARAGE AND BALCONY</text>
+  
+  <!-- GROUND FLOOR -->
+  <text x="400" y="90" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold">GROUND FLOOR</text>
+  
+  <!-- Outer walls - Ground Floor -->
+  <rect x="100" y="110" width="600" height="270" fill="none" stroke="black" stroke-width="6"/>
+  
+  <!-- Room 1: Living Room -->
+  <rect x="250" y="110" width="250" height="135" fill="none" stroke="black" stroke-width="2"/>
+  <text x="375" y="180" text-anchor="middle" font-family="Arial" font-size="16">LIVING ROOM</text>
+  <text x="375" y="200" text-anchor="middle" font-family="Arial" font-size="14">12.5' x 13.5'</text>
+  
+  <!-- Room 2: Kitchen -->
+  <rect x="500" y="110" width="200" height="135" fill="none" stroke="black" stroke-width="2"/>
+  <text x="600" y="180" text-anchor="middle" font-family="Arial" font-size="16">KITCHEN</text>
+  <text x="600" y="200" text-anchor="middle" font-family="Arial" font-size="14">10' x 13.5'</text>
+  
+  <!-- Room 3: Garage -->
+  <rect x="100" y="110" width="150" height="180" fill="none" stroke="black" stroke-width="2"/>
+  <text x="175" y="200" text-anchor="middle" font-family="Arial" font-size="16">GARAGE</text>
+  <text x="175" y="220" text-anchor="middle" font-family="Arial" font-size="14">7.5' x 18'</text>
+  <!-- Garage door -->
+  <line x1="125" y1="110" x2="225" y2="110" stroke="black" stroke-width="4"/>
+  <path d="M125,110 C125,130 125,130 125,110" stroke="black" fill="none" stroke-width="1"/>
+  <path d="M225,110 C225,130 225,130 225,110" stroke="black" fill="none" stroke-width="1"/>
+  <line x1="150" y1="110" x2="150" y2="130" stroke="black" stroke-width="1" stroke-dasharray="5,2"/>
+  <line x1="175" y1="110" x2="175" y2="130" stroke="black" stroke-width="1" stroke-dasharray="5,2"/>
+  <line x1="200" y1="110" x2="200" y2="130" stroke="black" stroke-width="1" stroke-dasharray="5,2"/>
+  
+  <!-- Room 4: Guest Bathroom -->
+  <rect x="250" y="245" width="125" height="135" fill="none" stroke="black" stroke-width="2"/>
+  <text x="312.5" y="315" text-anchor="middle" font-family="Arial" font-size="16">BATHROOM</text>
+  <text x="312.5" y="335" text-anchor="middle" font-family="Arial" font-size="14">6.25' x 13.5'</text>
+  <!-- Bathroom fixtures -->
+  <ellipse cx="300" cy="300" rx="25" ry="15" fill="none" stroke="black" stroke-width="1"/>
+  <rect x="340" y="275" width="25" height="40" fill="none" stroke="black" stroke-width="1"/>
+  
+  <!-- Staircase -->
+  <rect x="375" y="245" width="125" height="135" fill="none" stroke="black" stroke-width="2"/>
+  <line x1="375" y1="260" x2="500" y2="260" stroke="black" stroke-width="1"/>
+  <line x1="375" y1="275" x2="500" y2="275" stroke="black" stroke-width="1"/>
+  <line x1="375" y1="290" x2="500" y2="290" stroke="black" stroke-width="1"/>
+  <line x1="375" y1="305" x2="500" y2="305" stroke="black" stroke-width="1"/>
+  <line x1="375" y1="320" x2="500" y2="320" stroke="black" stroke-width="1"/>
+  <line x1="375" y1="335" x2="500" y2="335" stroke="black" stroke-width="1"/>
+  <line x1="375" y1="350" x2="500" y2="350" stroke="black" stroke-width="1"/>
+  <line x1="375" y1="365" x2="500" y2="365" stroke="black" stroke-width="1"/>
+  <text x="437.5" y="315" text-anchor="middle" font-family="Arial" font-size="16">STAIRS</text>
+  
+  <!-- Dining Area -->
+  <rect x="500" y="245" width="200" height="135" fill="none" stroke="black" stroke-width="2"/>
+  <text x="600" y="315" text-anchor="middle" font-family="Arial" font-size="16">DINING AREA</text>
+  <text x="600" y="335" text-anchor="middle" font-family="Arial" font-size="14">10' x 13.5'</text>
+  <!-- Dining table icon -->
+  <ellipse cx="600" cy="300" rx="40" ry="25" fill="none" stroke="black" stroke-width="1"/>
+  <ellipse cx="600" cy="300" rx="30" ry="15" fill="none" stroke="black" stroke-width="1"/>
+  
+  <!-- Doors - Ground Floor -->
+  <!-- Main entrance -->
+  <path d="M375,110 A30,30 0 0,1 345,140" fill="none" stroke="black" stroke-width="1.5"/>
+  <!-- Living to kitchen door -->
+  <path d="M500,175 A20,20 0 0,0 520,195" fill="none" stroke="black" stroke-width="1.5"/>
+  <!-- Garage to living door -->
+  <path d="M250,175 A20,20 0 0,0 270,195" fill="none" stroke="black" stroke-width="1.5"/>
+  <!-- Living to stairs door -->
+  <path d="M425,245 A20,20 0 0,0 445,265" fill="none" stroke="black" stroke-width="1.5"/>
+  <!-- Living to bathroom door -->
+  <path d="M325,245 A20,20 0 0,0 345,265" fill="none" stroke="black" stroke-width="1.5"/>
+  <!-- Kitchen to dining door -->
+  <path d="M600,245 A20,20 0 0,0 620,265" fill="none" stroke="black" stroke-width="1.5"/>
+
+  <!-- Windows - Ground Floor -->
+  <!-- Living room window -->
+  <line x1="375" y1="110" x2="425" y2="110" stroke="black" stroke-width="4"/>
+  <line x1="375" y1="108" x2="375" y2="112" stroke="black" stroke-width="1"/>
+  <line x1="425" y1="108" x2="425" y2="112" stroke="black" stroke-width="1"/>
+  <!-- Kitchen window -->
+  <line x1="700" y1="150" x2="700" y2="200" stroke="black" stroke-width="4"/>
+  <line x1="698" y1="150" x2="702" y2="150" stroke="black" stroke-width="1"/>
+  <line x1="698" y1="200" x2="702" y2="200" stroke="black" stroke-width="1"/>
+  <!-- Dining window -->
+  <line x1="700" y1="280" x2="700" y2="330" stroke="black" stroke-width="4"/>
+  <line x1="698" y1="280" x2="702" y2="280" stroke="black" stroke-width="1"/>
+  <line x1="698" y1="330" x2="702" y2="330" stroke="black" stroke-width="1"/>
+  <!-- Bathroom window -->
+  <line x1="250" y1="315" x2="250" y2="350" stroke="black" stroke-width="4"/>
+  <line x1="248" y1="315" x2="252" y2="315" stroke="black" stroke-width="1"/>
+  <line x1="248" y1="350" x2="252" y2="350" stroke="black" stroke-width="1"/>
+  
+  <!-- FIRST FLOOR -->
+  <text x="400" y="420" text-anchor="middle" font-family="Arial" font-size="18" font-weight="bold">FIRST FLOOR</text>
+  
+  <!-- Outer walls - First Floor -->
+  <rect x="100" y="440" width="600" height="270" fill="none" stroke="black" stroke-width="6"/>
+  
+  <!-- Room 5: Master Bedroom -->
+  <rect x="225" y="440" width="275" height="160" fill="none" stroke="black" stroke-width="2"/>
+  <text x="362.5" y="520" text-anchor="middle" font-family="Arial" font-size="16">MASTER BEDROOM</text>
+  <text x="362.5" y="540" text-anchor="middle" font-family="Arial" font-size="14">13.75' x 16'</text>
+  <!-- Bed icon -->
+  <rect x="300" y="480" width="120" height="70" fill="none" stroke="black" stroke-width="1"/>
+  <rect x="310" y="490" width="100" height="20" fill="none" stroke="black" stroke-width="1"/>
+  
+  <!-- Room 6: Bedroom 2 -->
+  <rect x="500" y="440" width="200" height="160" fill="none" stroke="black" stroke-width="2"/>
+  <text x="600" y="520" text-anchor="middle" font-family="Arial" font-size="16">BEDROOM 2</text>
+  <text x="600" y="540" text-anchor="middle" font-family="Arial" font-size="14">10' x 16'</text>
+  <!-- Bed icon -->
+  <rect x="550" y="480" width="100" height="60" fill="none" stroke="black" stroke-width="1"/>
+  <rect x="560" y="490" width="80" height="15" fill="none" stroke="black" stroke-width="1"/>
+  
+  <!-- Room 7: Bedroom 3 -->
+  <rect x="500" y="600" width="200" height="110" fill="none" stroke="black" stroke-width="2"/>
+  <text x="600" y="655" text-anchor="middle" font-family="Arial" font-size="16">BEDROOM 3</text>
+  <text x="600" y="675" text-anchor="middle" font-family="Arial" font-size="14">10' x 11'</text>
+  <!-- Bed icon -->
+  <rect x="550" y="620" width="100" height="60" fill="none" stroke="black" stroke-width="1"/>
+  <rect x="560" y="630" width="80" height="15" fill="none" stroke="black" stroke-width="1"/>
+  
+  <!-- Room 8: Master Bathroom -->
+  <rect x="100" y="440" width="125" height="120" fill="none" stroke="black" stroke-width="2"/>
+  <text x="162.5" y="500" text-anchor="middle" font-family="Arial" font-size="16">MASTER</text>
+  <text x="162.5" y="520" text-anchor="middle" font-family="Arial" font-size="16">BATH</text>
+  <text x="162.5" y="540" text-anchor="middle" font-family="Arial" font-size="14">6.25' x 12'</text>
+  <!-- Bathroom fixtures -->
+  <ellipse cx="150" cy="480" rx="25" ry="15" fill="none" stroke="black" stroke-width="1"/>
+  <rect x="120" y="510" width="25" height="40" fill="none" stroke="black" stroke-width="1"/>
+  <rect x="180" y="510" width="30" height="30" fill="none" stroke="black" stroke-width="1"/>
+  
+  <!-- Staircase landing -->
+  <rect x="100" y="560" width="125" height="150" fill="none" stroke="black" stroke-width="2"/>
+  <line x1="100" y1="575" x2="225" y2="575" stroke="black" stroke-width="1"/>
+  <line x1="100" y1="590" x2="225" y2="590" stroke="black" stroke-width="1"/>
+  <line x1="100" y1="605" x2="225" y2="605" stroke="black" stroke-width="1"/>
+  <line x1="100" y1="620" x2="225" y2="620" stroke="black" stroke-width="1"/>
+  <line x1="100" y1="635" x2="225" y2="635" stroke="black" stroke-width="1"/>
+  <line x1="100" y1="650" x2="225" y2="650" stroke="black" stroke-width="1"/>
+  <line x1="100" y1="665" x2="225" y2="665" stroke="black" stroke-width="1"/>
+  <line x1="100" y1="680" x2="225" y2="680" stroke="black" stroke-width="1"/>
+  <text x="162.5" y="625" text-anchor="middle" font-family="Arial" font-size="16">STAIRS</text>
+  
+  <!-- Balcony -->
+  <rect x="225" y="600" width="275" height="110" fill="none" stroke="black" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="362.5" y="655" text-anchor="middle" font-family="Arial" font-size="16">BALCONY</text>
+  <text x="362.5" y="675" text-anchor="middle" font-family="Arial" font-size="14">13.75' x 11'</text>
+  
+  <!-- Balcony railing -->
+  <line x1="225" y1="610" x2="500" y2="610" stroke="black" stroke-width="1"/>
+  <line x1="245" y1="600" x2="245" y2="710" stroke="black" stroke-width="1"/>
+  <line x1="265" y1="600" x2="265" y2="710" stroke="black" stroke-width="1"/>
+  <line x1="285" y1="600" x2="285" y2="710" stroke="black" stroke-width="1"/>
+  <line x1="305" y1="600" x2="305" y2="710" stroke="black" stroke-width="1"/>
+  <line x1="325" y1="600" x2="325" y2="710" stroke="black" stroke-width="1"/>
+  <line x1="345" y1="600" x2="345" y2="710" stroke="black" stroke-width="1"/>
+  <line x1="365" y1="600" x2="365" y2="710" stroke="black" stroke-width="1"/>
+  <line x1="385" y1="600" x2="385" y2="710" stroke="black" stroke-width="1"/>
+  <line x1="405" y1="600" x2="405" y2="710" stroke="black" stroke-width="1"/>
+  <line x1="425" y1="600" x2="425" y2="710" stroke="black" stroke-width="1"/>
+  <line x1="445" y1="600" x2="445" y2="710" stroke="black" stroke-width="1"/>
+  <line x1="465" y1="600" x2="465" y2="710" stroke="black" stroke-width="1"/>
+  <line x1="485" y1="600" x2="485" y2="710" stroke="black" stroke-width="1"/>
+  
+  <!-- Doors - First Floor -->
+  <!-- Stair landing to master bedroom -->
+  <path d="M225" y1="600" x2="245" y2="600" fill="none" stroke="black" stroke-width="1.5"/>
+  <!-- Master bedroom to balcony door -->
+  <rect x="362" y="598" width="40" height="4" fill="black"/>
+  <!-- Master bedroom to master bath -->
+  <path d="M225" y1="500" x2="245" y2="500" fill="none" stroke="black" stroke-width="1.5"/>
+  <!-- Master bedroom to bedroom 2 -->
+  <path d="M500" y1="500" x2="520" y2="500" fill="none" stroke="black" stroke-width="1.5"/>
+  <!-- Bedroom 2 to bedroom 3 -->
+  <path d="M600" y1="600" x2="620" y2="600" fill="none" stroke="black" stroke-width="1.5"/>
+
+  <!-- Windows - First Floor -->
+  <!-- Master bedroom window -->
+  <line x1="362" y1="440" x2="412" y2="440" stroke="black" stroke-width="4"/>
+  <line x1="362" y1="438" x2="362" y2="442" stroke="black" stroke-width="1"/>
+  <line x1="412" y1="438" x2="412" y2="442" stroke="black" stroke-width="1"/>
+  <!-- Bedroom 2 window -->
+  <line x1="700" y1="480" x2="700" y2="530" stroke="black" stroke-width="4"/>
+  <line x1="698" y1="480" x2="702" y2="480" stroke="black" stroke-width="1"/>
+  <line x1="698" y1="530" x2="702" y2="530" stroke="black" stroke-width="1"/>
+  <!-- Bedroom 3 window -->
+  <line x1="700" y1="630" x2="700" y2="680" stroke="black" stroke-width="4"/>
+  <line x1="698" y1="630" x2="702" y2="630" stroke="black" stroke-width="1"/>
+  <line x1="698" y1="680" x2="702" y2="680" stroke="black" stroke-width="1"/>
+  <!-- Master bathroom window -->
+  <line x1="100" y1="480" x2="100" y2="520" stroke="black" stroke-width="4"/>
+  <line x1="98" y1="480" x2="102" y2="480" stroke="black" stroke-width="1"/>
+  <line x1="98" y1="520" x2="102" y2="520" stroke="black" stroke-width="1"/>
+  
+  <!-- Scale indicator -->
+  <line x1="100" y1="750" x2="200" y2="750" stroke="black" stroke-width="2"/>
+  <line x1="100" y1="745" x2="100" y2="755" stroke="black" stroke-width="2"/>
+  <line x1="200" y1="745" x2="200" y2="755" stroke="black" stroke-width="2"/>
+  <text x="150" y="770" text-anchor="middle" font-family="Arial" font-size="14">10 feet</text>
+</svg>

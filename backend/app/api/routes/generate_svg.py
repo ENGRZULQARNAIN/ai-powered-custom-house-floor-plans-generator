@@ -1,8 +1,9 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import List
+from app.svg_to_png.helpers import convert_svg_to_base64
 from app.ai.model import chain
-import cairosvg
+# import cairosvg
 import base64
 import io
 
@@ -35,13 +36,14 @@ async def generate_house_image(specs: HouseSpecifications):
                 "num_floors": specs.num_floors
             })
         # Convert SVG to PNG using cairosvg
-        png_data = cairosvg.svg2png(bytestring=response.encode('utf-8'))
+        # png_data = cairosvg.svg2png(bytestring=response.encode('utf-8'))
         
         # Convert PNG to base64
-        base64_image = base64.b64encode(png_data).decode('utf-8')
+        # base64_image = base64.b64encode(png_data).decode('utf-8')
         
         return {
-            "image": {base64_image},
+            "message":"succesfully generated the map",
+            "image_base64": convert_svg_to_base64(response),
             "svg": response  # Optional: include original SVG if needed
         }
     except Exception as e:

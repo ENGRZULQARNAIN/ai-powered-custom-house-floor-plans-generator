@@ -14,4 +14,4 @@ langchain-huggingface
 langchain-community
 langchain-core
 fastapi[standard]
-cairosvg
+# cairosvg
