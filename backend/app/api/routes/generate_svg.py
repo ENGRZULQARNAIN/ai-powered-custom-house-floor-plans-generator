@@ -1,8 +1,12 @@
 from fastapi import APIRouter, HTTPException
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.messages import HumanMessage
+from langchain_core.output_parsers import StrOutputParser
+from app.ai.svg_parser import SVGOutputParser
 from pydantic import BaseModel
 from typing import List
-from app.svg_to_png.helpers import convert_svg_to_base64
-from app.ai.model import chain
+# from app.svg_to_png.helpers import convert_svg_to_base64
+from app.ai.model import create_chat_chain
 # import cairosvg
 import base64
 import io
@@ -13,9 +17,9 @@ router = APIRouter(tags=["SVG Generation"])
 # Pydantic model for request body
 class HouseSpecifications(BaseModel):
     house_type: str
-    total_area: float  # Total area of the house in square meters
-    num_floors: int    # Number of floors
-    num_rooms: int     # Number of rooms
+    num_marla: float  # Instead of total_area
+    num_floors: int
+    num_bedrooms: int  # Instead of num_rooms
     additional_preferences: List[str] = []  # Additional preferences (e.g., balcony, garden)
 
 
@@ -25,16 +29,20 @@ async def generate_house_image(specs: HouseSpecifications):
     Generate an image of a house based on user specifications and return it as base64.
     """
     # Validate inputs
-    if specs.total_area <= 0 or specs.num_floors <= 0 or specs.num_rooms <= 0:
+    if specs.num_marla <= 0 or specs.num_floors <= 0 or specs.num_bedrooms <= 0:
         raise HTTPException(status_code=400, detail="Invalid input values. All fields must be positive numbers.")
     try:
-        response = chain.invoke(
-            input={
-                "house_type": specs.house_type,
-                "num_marla": specs.total_area,
-                "num_bedrooms": specs.num_rooms,
-                "num_floors": specs.num_floors
-            })
+        # Generate prompt
+        system_message, human_message, llm = create_chat_chain(specs.house_type, specs.num_marla, specs.num_bedrooms, specs.num_floors)
+        print("chat prompt -1", human_message.content)
+
+        parser = SVGOutputParser()
+
+        messages = [system_message, human_message]
+        
+        response = llm.invoke(messages).content
+        response = parser.parse(response)
+        print("response\n", response)
         # Convert SVG to PNG using cairosvg
         # png_data = cairosvg.svg2png(bytestring=response.encode('utf-8'))
         
@@ -43,7 +51,7 @@ async def generate_house_image(specs: HouseSpecifications):
         
         return {
             "message":"succesfully generated the map",
-            "image_base64": convert_svg_to_base64(response),
+            # "image_base64": convert_svg_to_base64(response),
             "svg": response  # Optional: include original SVG if needed
         }
     except Exception as e:
