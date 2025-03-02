@@ -231,17 +231,75 @@
                 
                 // Update UI with results
                 document.getElementById('houseDescription').textContent = 
-                    `${payload.house_type} with ${payload.total_area} Marlas, ${payload.num_floors} floor(s), ` +
-                    `${payload.num_rooms} room(s),` +
-                    (preferences.length > 0 ? ` and ${preferences.join(', ')}` : '');
+    `${payload.house_type} with ${payload.num_marla} Marlas, ${payload.num_floors} floor(s), ` +
+    `${payload.num_bedrooms} room(s),` +
+    (preferences.length > 0 ? ` and ${preferences.join(', ')}` : '');
                 
                 // Display the base64 image directly
-                document.getElementById('generatedImage').src = `data:image/png;base64,${data.image_base64}`;
-                document.getElementById('resultContainer').style.display = 'block';
+                if (data.image_base64) {
+                    // Check the format to determine the correct data URL prefix
+                    const format = data.format || 'png';
+                    const contentType = format === 'svg' ? 'image/svg+xml' : 'image/png';
+                    
+                    // Make sure we're not adding the prefix twice
+                    const imgSrc = data.image_base64.startsWith('data:image') 
+                        ? data.image_base64 
+                        : `data:${contentType};base64,${data.image_base64}`;
+                    
+                    document.getElementById('generatedImage').src = imgSrc;
+                    document.getElementById('resultContainer').style.display = 'block';
+                    
+                    // Update description with format info if it's SVG
+                    if (format === 'svg') {
+                        document.getElementById('houseDescription').textContent += ' (SVG format)';
+                    }
+                } else {
+                    throw new Error('No image data received');
+                }
             } catch (error) {
                 console.error('Error:', error);
-                document.getElementById('errorMessage').textContent = 'Failed to generate house image. Please try again.';
-                document.getElementById('errorMessage').style.display = 'block';
+                // Try fallback to SVG if PNG generation failed
+                try {
+                    const svgResponse = await fetch('/api/v1/generate-house-svg', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    if (!svgResponse.ok) {
+                        throw new Error('Failed to generate SVG');
+                    }
+                    
+                    const svgData = await svgResponse.json();
+                    
+                    if (svgData.svg_content) {
+                        // First try to use the base64 encoded SVG if available
+                        if (svgData.image_base64) {
+                            document.getElementById('generatedImage').src = `data:image/svg+xml;base64,${svgData.image_base64}`;
+                        } else {
+                            // Create a data URL from the SVG content
+                            const svgBlob = new Blob([svgData.svg_content], {type: 'image/svg+xml'});
+                            const svgUrl = URL.createObjectURL(svgBlob);
+                            document.getElementById('generatedImage').src = svgUrl;
+                        }
+                        document.getElementById('resultContainer').style.display = 'block';
+                        
+                        // Update description
+                        document.getElementById('houseDescription').textContent = 
+                            `${payload.house_type} with ${payload.num_marla} Marlas, ${payload.num_floors} floor(s), ` +
+                            `${payload.num_bedrooms} room(s)` +
+                            (preferences.length > 0 ? ` and ${preferences.join(', ')}` : '') +
+                            ' (SVG format)';
+                    } else {
+                        throw new Error('No SVG content received');
+                    }
+                } catch (svgError) {
+                    console.error('SVG Fallback Error:', svgError);
+                    document.getElementById('errorMessage').textContent = 'Failed to generate house image. Please try again.';
+                    document.getElementById('errorMessage').style.display = 'block';
+                }
             } finally {
                 document.querySelector('.loading').style.display = 'none';
             }
